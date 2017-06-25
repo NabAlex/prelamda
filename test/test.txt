@@ -1,0 +1,24 @@
+int test_(void *data, int a, int b)
+{
+    // ...
+}
+
+typedef struct test1
+{
+    char *data;
+} test1_t;
+
+data
+{
+    char *data = "hello world";
+    ipro_printf(test_, data);
+}
+
+/////////////////////////
+
+{
+    char *data = "hello world";
+    ipro_printf((a, b) -> {
+        // ...
+    }, data);
+}
