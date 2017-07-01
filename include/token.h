@@ -25,6 +25,9 @@ typedef struct tokenize
     int line;
 } tokenize_t;
 
+tokenize_t **
+token_get_tokens(int *size);
+
 void
 token_init();
 
@@ -34,6 +37,10 @@ token_add(tokenize_t *tok);
 /* init token */
 tokenize_t *
 tokenize_init();
+
+int
+token_snprintf(tokenize_t **tokens, int tokens_len, char *buf, int buf_size);
+
 void
 tokenize_release(tokenize_t *tok);
 

@@ -116,8 +116,11 @@ lex_start_parse()
                 else
                     break;
             }
+
+            token->a_int = tmp;
             token_add(token);
-    
+
+            read_token = 0;
             continue;
         }
         
@@ -190,7 +193,7 @@ lex_start_parse()
         else
         {
             token->token_type = SPEC_WORDS;
-            token->a_ptr = lex_spec_words[find_flag];
+            token->a_ptr = strdup(lex_spec_words[find_flag]);
             token_add(token);
         }
         

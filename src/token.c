@@ -7,6 +7,13 @@ size_t buffer_tok_len;
 
 int32_t tok_cur;
 
+tokenize_t **
+token_get_tokens(int *size)
+{
+    *size = tok_cur;
+    return buffer_tok;
+}
+
 tokenize_t *
 tokenize_init()
 {
@@ -58,6 +65,34 @@ token_add(tokenize_t *tok)
     
     buffer_tok[tok_cur] = tok;
     ++tok_cur;
+}
+
+int
+token_snprintf(tokenize_t **tokens, int tokens_len, char *buf, int buf_size)
+{
+    int buf_len = 0;
+    for (int i = 0; i < tokens_len; i++)
+    {
+        tokenize_t *t = tokens[i];
+        switch (tokens[i]->token_type)
+        {
+            case (SPECIAL):
+                buf_len += snprintf(buf + buf_len, buf_size - buf_len, "%c ", tokens[i]->a_chr);
+                break;
+            case (SPEC_WORDS):
+                buf_len += snprintf(buf + buf_len, buf_size - buf_len, "%s ", tokens[i]->a_ptr);
+                break;
+            case (INT):
+                buf_len += snprintf(buf + buf_len, buf_size - buf_len, "%d ", tokens[i]->a_int);
+                break;
+            case (STRING_PTR):
+                buf_len += snprintf(buf + buf_len, buf_size - buf_len, "%s ", tokens[i]->a_ptr);
+                break;
+        }
+    }
+
+    buf[buf_len] = '\0';
+    return buf_len;
 }
 
 void
