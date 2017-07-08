@@ -1,6 +1,8 @@
 #ifndef PRELAMDA_GEN_H_H
 #define PRELAMDA_GEN_H_H
 
+#define ACCUMULATOR_BEGIN_LENGTH 100
+
 typedef struct acc
 {
     char *data;

@@ -1,10 +1,12 @@
 #include "prelamda.h"
 
+int inc_counter;
+
 acc_t *
 acc_init(size_t init_size)
 {
     acc_t *tmp = xmalloc( sizeof(acc_t) );
-    tmp->data = xmalloc(init_size);
+    tmp->data = xmalloc(init_size * sizeof(tmp->data));
     tmp->cursor = 0;
     
     tmp->length = init_size;
@@ -19,19 +21,27 @@ acc_release(acc_t *acc)
 }
 
 void
+acc_concat(acc_t *acc, acc_t *add_part)
+{
+    // snprinf
+}
+
+void
 accf(acc_t *acc, char *format, ...)
 {
     
 }
 
-int inc;
+int inc_counter;
 void
 gen_init()
 {
-    inc = 0; // TODO in config
+    inc_counter = 0;
 }
 
-static void gen_func()
+static acc_t *
+gen_func_alloc(acc_t *body)
 {
+    acc_t *tmp = acc_init(ACCUMULATOR_BEGIN_LENGTH);
     
 }

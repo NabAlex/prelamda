@@ -2,6 +2,8 @@
 
 #define TOKEN_MULTI_COEF 2.7
 
+#define MAX_TOKEN_STR_SIZE 1 KiB
+
 tokenize_t **buffer_tok;
 size_t buffer_tok_len;
 
@@ -93,6 +95,15 @@ token_snprintf(tokenize_t **tokens, int tokens_len, char *buf, int buf_size)
 
     buf[buf_len] = '\0';
     return buf_len;
+}
+
+int
+token_all_print_alloc(char **result_buf)
+{
+    const unsigned int STR_SIZE = MAX_TOKEN_STR_SIZE;
+    
+    *result_buf = (char*) xmalloc(STR_SIZE * sizeof(char));
+    return token_snprintf(buffer_tok, tok_cur, *result_buf, STR_SIZE);
 }
 
 void

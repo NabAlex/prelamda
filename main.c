@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
     token_init();
 
-    FILE *prefile = fopen("/Users/a.nabereznyi/Dev/prelamda/test/lex1.cc", "r");
+    FILE *prefile = fopen("/home/alex/CLionProjects/prelamda/test/lex1.cc", "r");
     if (!prefile)
     {
         printf("cannot open files\n");
@@ -21,12 +21,8 @@ int main(int argc, char **argv)
     lex_init(prefile);
     lex_start_parse();
 
-
-    int tok_len;
-    tokenize_t **tok = token_get_tokens(&tok_len);
-
-    char buf[1 KiB];
-    token_snprintf(tok, tok_len, buf, sizeof(buf));
+    char *buf;
+    token_all_print_alloc(&buf);
     printf("%s\n", buf);
 
     fclose(prefile);

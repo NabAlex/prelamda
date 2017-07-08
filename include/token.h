@@ -41,6 +41,9 @@ tokenize_init();
 int
 token_snprintf(tokenize_t **tokens, int tokens_len, char *buf, int buf_size);
 
+int
+token_all_print_alloc(char **result_buf);
+
 void
 tokenize_release(tokenize_t *tok);
 
